@@ -5,8 +5,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SendMail.Core.Entity;
 
-namespace SendMail.Core
+namespace SendMail.Core.Business
 {
     public class ExcelReader
     {

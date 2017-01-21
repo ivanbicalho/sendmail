@@ -20,9 +20,7 @@ namespace SendMail.Playground
 
                 var adapter = new OleDbDataAdapter(command);
                 var dt = new System.Data.DataTable();
-                adapter.Fill(dt);
-
-                
+                adapter.Fill(dt);                
             }
         }
     }

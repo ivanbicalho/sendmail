@@ -41,8 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmailData.cs" />
-    <Compile Include="EmailEntity.cs" />
-    <Compile Include="ExcelReader.cs" />
+    <Compile Include="Entity\EmailEntity.cs" />
+    <Compile Include="Business\ExcelReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

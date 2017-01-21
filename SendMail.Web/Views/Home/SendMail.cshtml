@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Envio de e-mails";
+}
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/SendMail.js"></script>
+}
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h2>Envio de e-mails</h2>
+        <hr class="star-primary">
+    </div>
+</div>
+
+<div class="row">
+    <form name="sentMessage" id="formSentMessage">
+        <div class="row control-group">
+            <div class="form-group col-md-12 floating-label-form-group controls">
+                <label>Nome do remetente</label>
+                <input type="text" class="form-control" placeholder="Nome" id="name" required>
+            </div>
+        </div>
+        <div class="row control-group">
+            <div class="form-group col-md-12 floating-label-form-group controls">
+                <label>E-mail do remetente</label>
+                <input type="email" class="form-control" placeholder="Email" id="email" required>
+            </div>
+        </div>
+        <div class="row control-group">
+            <div class="form-group col-md-12 floating-label-form-group controls">
+                <label>Senha do e-mail do remetente</label>
+                <input type="password" class="form-control" placeholder="Senha" id="password" required>
+            </div>
+        </div>
+        <div class="row control-group">
+            <div class="form-group col-md-12 floating-label-form-group controls">
+                <label class="control-label">Upload da planilha com dados (<a href="~/Content/Planilha de emails.xlsx" target="_blank">Baixar planilha modelo</a>)</label>
+                <input type="file" class="file" id="uploadPlan" data-show-preview="false">
+            </div>
+        </div>
+        <div class="row control-group">
+            <div class="form-group col-md-12 floating-label-form-group controls">
+                <label class="control-label">Assunto do e-mail</label>
+                <input type="text" class="form-control" placeholder="Assunto" id="emailSubject" required>
+            </div>
+        </div>
+        <div class="row control-group">
+            <div class="form-group col-md-12 floating-label-form-group controls">
+                <label>Email</label>
+                <div id="summernote"></div>
+            </div>
+        </div>
+        <input type="hidden" id="hiddenEmails" value="@ViewBag.Emails" />
+        <br>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <button id="btnEnviar" type="submit" class="btn btn-success btn-lg">Enviar</button>
+            </div>
+        </div>
+    </form>
+</div>

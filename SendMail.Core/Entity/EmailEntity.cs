@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SendMail.Core
+namespace SendMail.Core.Entity
 {
     public class EmailEntity
     {
