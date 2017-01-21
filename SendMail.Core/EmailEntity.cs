@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace SendMail.Core
 {
-    public class Class1
+    public class EmailEntity
     {
+        public string Name { get; set; }
+        public string Email { get; set; }
     }
 }

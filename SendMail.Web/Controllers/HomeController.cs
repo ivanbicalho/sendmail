@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SendMail.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,14 @@ namespace SendMail.Web.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        
+        public JsonResult SendMail(EmailData emailData)
+        {
+            return Json(emailData);
         }
     }
 }
