@@ -51,10 +51,15 @@ namespace SendMail.Core.Business
             smtpClient.Credentials = new System.Net.NetworkCredential(parameters.Email, parameters.Password);
             smtpClient.UseDefaultCredentials = true;
             smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+#if DEBUG
+            smtpClient.EnableSsl = false;
+#else
             smtpClient.EnableSsl = true;
+#endif
 
             MailMessage mail = new MailMessage();
-            mail.Subject = parameters.EmailSubject;
+            mail.Subject = parameters.EmailSubject.Replace("@NOME", to.Name);
             mail.IsBodyHtml = true;
             mail.Body = parameters.EmailText.Replace("@NOME", to.Name);
 
