@@ -46,28 +46,26 @@ namespace SendMail.Core.Business
 
         private void ExecuteSendMail(EmailParameters parameters, EmailEntity to)
         {
-            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+            using (var smtpClient = new SmtpClient("smtp.gmail.com", 587))
+            {
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.Credentials = new System.Net.NetworkCredential(parameters.Email, parameters.Password);
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpClient.EnableSsl = true;
 
-            smtpClient.Credentials = new System.Net.NetworkCredential(parameters.Email, parameters.Password);
-            smtpClient.UseDefaultCredentials = true;
-            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                using (var mail = new MailMessage())
+                {
+                    mail.Subject = parameters.EmailSubject.Replace("@NOME", to.Name);
+                    mail.IsBodyHtml = true;
+                    mail.Body = parameters.EmailText.Replace("@NOME", to.Name);
 
-#if DEBUG
-            smtpClient.EnableSsl = false;
-#else
-            smtpClient.EnableSsl = true;
-#endif
+                    //Setting From , To and CC
+                    mail.From = new MailAddress(parameters.Email, parameters.Name);
+                    mail.To.Add(new MailAddress(to.Email));
 
-            MailMessage mail = new MailMessage();
-            mail.Subject = parameters.EmailSubject.Replace("@NOME", to.Name);
-            mail.IsBodyHtml = true;
-            mail.Body = parameters.EmailText.Replace("@NOME", to.Name);
-
-            //Setting From , To and CC
-            mail.From = new MailAddress(parameters.Email, parameters.Name);
-            mail.To.Add(new MailAddress(to.Email));
-
-            smtpClient.Send(mail);
+                    smtpClient.Send(mail);
+                }
+            }
         }
     }
 }
