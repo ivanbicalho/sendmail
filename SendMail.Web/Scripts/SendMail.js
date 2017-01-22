@@ -1,11 +1,19 @@
 ﻿
 $(document).ready(function () {
+
     $('#summernote').summernote({
         minHeight: 220,
         maxHeight: null
     });
 
+    $("#summernote").summernote("code", "<p>Olá @NOME, tudo bem?</p><p><b>Obs: @NOME será substituído pelo nome da planilha.</b></p>");
+
     $("#btnEnviar").on('click', function () {
+
+        if (!validateFields()) {
+            alert('Todos os campos são obrigatórios');
+            return;
+        }
 
         showLoad();
 
@@ -37,26 +45,47 @@ $(document).ready(function () {
         event.preventDefault();
     });
 
+    $("#btnRetry").on('click', function () {
+        $("#divForm").show();
+        $("#divResult").hide();
+    });
+
     $("#divForm").show();
     $("#divResult").hide();
 });
 
 function bindGridResult(response) {
+    $("#divResult > table > tbody > tr").remove();
+
     response.forEach(function (item) {
         $("#divResult > table > tbody").append(
             '<tr>' +
                 '<td>' + (item.Success ? '<img src="/Images/success.png" />' : '<img src="/Images/error.png" />') + '</td>' +
                 '<td scope="row">' + item.Name + '</td>' +
-                '<td>' + item.Email + '</td>' +                
+                '<td>' + item.Email + '</td>' +
                 '<td>' + item.Message + '</td>' +
             '</tr>');
-    });    
+    });
+}
+
+function validateFields() {
+    var name = $("#name").val();
+    var email = $("#email").val();
+    var password = $("#password").val();
+    var subject = $("#emailSubject").val();
+    var emailtext = $('#summernote').summernote('code');
+
+    return !IsEmpty(name) && !IsEmpty(email) && !IsEmpty(password) && !IsEmpty(subject) && !IsEmpty(emailtext);
+}
+
+function IsEmpty(val) {
+    return val == undefined || val == null || val.trim() == '';
 }
 
 function showLoad() {
-
+    $('#loader').attr('style', 'display:block');
 }
 
 function hideLoad() {
-
+    $('#loader').attr('style', 'display:none');
 }

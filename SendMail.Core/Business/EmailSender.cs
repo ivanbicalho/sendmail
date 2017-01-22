@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SendMail.Core.Entity;
 using System.Net.Mail;
+using System.Collections.Concurrent;
 
 namespace SendMail.Core.Business
 {
@@ -14,12 +15,12 @@ namespace SendMail.Core.Business
     {
         public IEnumerable<EmailResult> Send(EmailData data)
         {
-            var result = new List<EmailResult>();
+            var result = new ConcurrentBag<EmailResult>();
 
-            foreach (var to in data.To)
+            Parallel.ForEach(data.To, (to) =>
             {
                 result.Add(SendMail(data.Parameters, to));
-            }
+            });
 
             return result;
         }
