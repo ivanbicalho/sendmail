@@ -1,4 +1,5 @@
 ﻿
+// Ready ------------------------------------
 $(document).ready(function () {
 
     $('#summernote').summernote({
@@ -53,6 +54,8 @@ $(document).ready(function () {
     $("#divForm").show();
     $("#divResult").hide();
 });
+
+// End Ready ------------------------------------
 
 function bindGridResult(response) {
     $("#divResult > table > tbody > tr").remove();

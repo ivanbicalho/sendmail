@@ -59,7 +59,6 @@ namespace SendMail.Core.Business
                     mail.IsBodyHtml = true;
                     mail.Body = parameters.EmailText.Replace("@NOME", to.Name);
 
-                    //Setting From , To and CC
                     mail.From = new MailAddress(parameters.Email, parameters.Name);
                     mail.To.Add(new MailAddress(to.Email));
 
