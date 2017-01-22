@@ -39,9 +39,19 @@ namespace SendMail.Web.Controllers
 
         [HttpGet]
         [Route("plan")]
-        public FileResult ModelPlan()
+        public FileResult DownloadPlan()
         {
-            return null;
+            var fileName = "Planilha de emails.xls";
+
+            var contentDisposition = new System.Net.Mime.ContentDisposition
+            {
+                FileName = fileName,                
+                Inline = false
+            };
+
+            Response.AppendHeader("Content-Disposition", contentDisposition.ToString());
+
+            return File(Path.Combine(Server.MapPath("~/Content/"), fileName), MimeMapping.GetMimeMapping(fileName));            
         }
 
         [HttpPost]
@@ -49,7 +59,7 @@ namespace SendMail.Web.Controllers
         [Route("mail/send/execute")]
         public JsonResult SendMail(EmailData data)
         {
-            return Json(new { success = true });
+            return Json(new EmailSender().Send(data));
         }
 
         private IEnumerable<EmailEntity> ReadEmailsFromFile()

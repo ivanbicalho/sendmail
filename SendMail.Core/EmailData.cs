@@ -9,13 +9,7 @@ namespace SendMail.Core
 {
     public class EmailData
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        
-        public string EmailSubject { get; set; }
-        public string EmailText { get; set; }
-
+        public EmailParameters Parameters { get; set; }
         public List<EmailEntity> To { get; set; }
     }
 }

@@ -14,21 +14,22 @@ $(document).ready(function () {
             type: "post",
             data:
             {
-                Name: $("#name").val(),
-                Email: $("#email").val(),
-                Password: $("#password").val(),
-                EmailSubject: $("#emailSubject").val(),
-                EmailText: $('#summernote').summernote('code'),
+                Parameters: {
+                    Name: $("#name").val(),
+                    Email: $("#email").val(),
+                    Password: $("#password").val(),
+                    EmailSubject: $("#emailSubject").val(),
+                    EmailText: $('#summernote').summernote('code')
+                },
                 To: JSON.parse($("#hiddenEmails").val())
             },
             success: function (response) {
-                console.log(response);
                 hideLoad();
+                bindGridResult(response);
                 $("#divForm").hide();
                 $("#divResult").show();
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                console.log(textStatus, errorThrown);
                 hideLoad();
             }
         });
@@ -40,12 +41,22 @@ $(document).ready(function () {
     $("#divResult").hide();
 });
 
-function showLoad()
-{
+function bindGridResult(response) {
+    response.forEach(function (item) {
+        $("#divResult > table > tbody").append(
+            '<tr>' +
+                '<td>' + (item.Success ? '<img src="/Images/success.png" />' : '<img src="/Images/error.png" />') + '</td>' +
+                '<td scope="row">' + item.Name + '</td>' +
+                '<td>' + item.Email + '</td>' +                
+                '<td>' + item.Message + '</td>' +
+            '</tr>');
+    });    
+}
+
+function showLoad() {
 
 }
 
-function hideLoad()
-{
+function hideLoad() {
 
 }
