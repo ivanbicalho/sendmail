@@ -188,6 +188,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="PlanUploaded\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SendMail.Core\SendMail.Core.csproj">

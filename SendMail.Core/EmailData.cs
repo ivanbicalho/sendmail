@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SendMail.Core.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,7 @@ namespace SendMail.Core
         
         public string EmailSubject { get; set; }
         public string EmailText { get; set; }
+
+        public List<EmailEntity> To { get; set; }
     }
 }

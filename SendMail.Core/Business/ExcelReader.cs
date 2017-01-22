@@ -46,7 +46,7 @@ namespace SendMail.Core.Business
         private bool IsValidRow(DataRow row)
         {
             return !row.IsNull(0)
-                && row.IsNull(1)
+                && !row.IsNull(1)
                 && !string.IsNullOrWhiteSpace(row[0].ToString())
                 && !string.IsNullOrWhiteSpace(row[1].ToString());
         }

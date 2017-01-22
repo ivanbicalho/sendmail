@@ -11,18 +11,18 @@
 </div>
 
 <div class="row">
-    @using (Html.BeginForm("SendMail", "Home"))
+    @using (Html.BeginForm("SendMail", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="row control-group">
             <div class="form-group col-md-12 floating-label-form-group controls">
                 <label class="control-label">Upload da planilha com dados (<a href="~/Content/Planilha de emails.xlsx" target="_blank">Baixar planilha modelo</a>)</label>
-                <input type="file" class="file" id="uploadPlan" data-show-preview="false">
+                <input type="file" name="file" class="file" accept=".xls" required data-show-preview="false">
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="form-group col-md-12">
-                <button id="btnNext" type="submit" class="btn btn-success btn-lg">Próximo Passo ></button>
+            <div class="form-group col-md-12">                
+                <button type="submit" class="btn btn-success btn-lg">Próximo Passo ></button>
             </div>
         </div>
     }
