@@ -45,13 +45,13 @@ namespace SendMail.Web.Controllers
 
             var contentDisposition = new System.Net.Mime.ContentDisposition
             {
-                FileName = fileName,                
+                FileName = fileName,
                 Inline = false
             };
 
             Response.AppendHeader("Content-Disposition", contentDisposition.ToString());
 
-            return File(Path.Combine(Server.MapPath("~/Content/"), fileName), MimeMapping.GetMimeMapping(fileName));            
+            return File(Path.Combine(Server.MapPath("~/Content/"), fileName), MimeMapping.GetMimeMapping(fileName));
         }
 
         [HttpPost]
@@ -65,7 +65,7 @@ namespace SendMail.Web.Controllers
         private IEnumerable<EmailEntity> ReadEmailsFromFile()
         {
             var file = Request.Files[0];
-            var path = Path.Combine(Server.MapPath("~/PlanUploaded/"), Guid.NewGuid().ToString() + ".xls");
+            var path = Path.Combine(Server.MapPath("~/"), Guid.NewGuid().ToString() + ".xls");
             file.SaveAs(path);
 
             var emails = new ExcelReader().Read(path);
