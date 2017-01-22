@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     $("#summernote").summernote("code", "<p>Olá @NOME, tudo bem?</p><p><b>Obs: @NOME será substituído pelo nome da planilha.</b></p>");
 
-    $("#btnEnviar").on('click', function () {
+    $("#btnSend").on('click', function () {
 
         if (!validateFields()) {
             alert('Todos os campos são obrigatórios');
@@ -83,9 +83,13 @@ function IsEmpty(val) {
 }
 
 function showLoad() {
-    $('#loader').attr('style', 'display:block');
+    $('#btnSend').text('Enviando...');
+    $('#btnSend').prop('disabled', true);    
+    $('#loading').show();
 }
 
 function hideLoad() {
-    $('#loader').attr('style', 'display:none');
+    $('#btnSend').text('Enviar');
+    $('#btnSend').prop('disabled', false);    
+    $('#loading').hide();
 }

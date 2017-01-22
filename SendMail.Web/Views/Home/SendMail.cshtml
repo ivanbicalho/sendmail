@@ -52,14 +52,14 @@
         <br>
         <div class="row">
             <div class="form-group col-md-12">
-                <button id="btnEnviar" type="submit" class="btn btn-success btn-lg">Enviar</button>
+                <button id="btnSend" type="submit" class="btn btn-success btn-lg">Enviar</button>
+                <img src="~/Images/ajax-loader.gif" id="loading" style="display:none" />
             </div>
         </div>
     </form>
 </div>
 
 <div class="row" id="divResult">
-
     <table class="table">
         <thead>
             <tr>
@@ -71,5 +71,5 @@
         </thead>
         <tbody></tbody>
     </table>
-    <button id="btnRetry" type="submit" class="btn btn-default btn-lg">Executar novamente</button>
+    <button id="btnRetry" type="submit" class="btn btn-default btn-lg">Tentar novamente</button>
 </div>
