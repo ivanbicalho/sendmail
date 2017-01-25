@@ -11,7 +11,7 @@
 <div class="row">
     <div class="col-md-12 text-center">
         <h2>Envio de e-mails</h2>
-        <h3>@(ViewBag.CountEmails ?? 0) email(s) carregado(s)</h3>
+        <h3>@(ViewBag.CountEmails ?? 0) email(s) carregado(s)*</h3>
         <hr class="star-primary">
     </div>
 </div>
@@ -53,7 +53,12 @@
         <div class="row">
             <div class="form-group col-md-12">
                 <button id="btnSend" type="submit" class="btn btn-success btn-lg">Enviar</button>
-                <img src="~/Images/ajax-loader.gif" id="loading" style="display:none" />
+                <img src="~/Images/ajax-loader.gif" id="loading" style="display:none" />                
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">                
+                <span>* Dependendo da quantidade de e-mails essa pode ser uma operação bastante demorada</span>
             </div>
         </div>
     </form>

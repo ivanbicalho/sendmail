@@ -13,14 +13,33 @@ namespace SendMail.Core.Business
 {
     public class EmailSender
     {
+        //public IEnumerable<EmailResult> Send(EmailData data)
+        //{
+        //    var result = new ConcurrentBag<EmailResult>();
+
+        //    Parallel.ForEach(data.To, (to, loopState, index) =>
+        //    {
+        //        WaitNSecondsToSend(Convert.ToInt32(index));
+        //        result.Add(SendMail(data.Parameters, to));
+        //    });
+
+        //    return result;
+        //}
+
+        //private void WaitNSecondsToSend(int seed)
+        //{
+        //    // Aguarda de 0 a 15 segundos para enviar a mensagem (usado para evitar erro no envio de e-mail por deficiência de vazão)
+        //    System.Threading.Thread.Sleep(new Random(seed).Next(0, 15001));
+        //}
+
         public IEnumerable<EmailResult> Send(EmailData data)
         {
-            var result = new ConcurrentBag<EmailResult>();
+            var result = new List<EmailResult>();
 
-            Parallel.ForEach(data.To, (to) =>
+            foreach (var to in data.To)
             {
                 result.Add(SendMail(data.Parameters, to));
-            });
+            }
 
             return result;
         }

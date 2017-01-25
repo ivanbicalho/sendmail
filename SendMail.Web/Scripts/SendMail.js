@@ -21,6 +21,7 @@ $(document).ready(function () {
         $.ajax({
             url: "/mail/send/execute",
             type: "post",
+            timeout: 0,
             data:
             {
                 Parameters: {
@@ -40,7 +41,7 @@ $(document).ready(function () {
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 hideLoad();
-            }
+            }            
         });
 
         event.preventDefault();
