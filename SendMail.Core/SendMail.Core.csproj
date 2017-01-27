@@ -41,7 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\EmailSender.cs" />
-    <Compile Include="EmailParameters.cs" />
     <Compile Include="EmailResult.cs" />
     <Compile Include="EmailData.cs" />
     <Compile Include="Entity\EmailEntity.cs" />

@@ -1,17 +1,17 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Envio de e-mails";
+    var qtdEmails = ViewBag.CountEmails ?? 0;
 }
 
 @section scripts
 {
-    <script type="text/javascript" src="~/Scripts/SendMail.js"></script>
+    <script type="text/javascript" src="~/Scripts/Mail.js"></script>
 }
 
 <div class="row">
     <div class="col-md-12 text-center">
         <h2>Envio de e-mails</h2>
-        <h3>@(ViewBag.CountEmails ?? 0) email(s) carregado(s)*</h3>
+        <h3>@qtdEmails email(s) carregado(s)</h3>
         <hr class="star-primary">
     </div>
 </div>
@@ -53,28 +53,43 @@
         <div class="row">
             <div class="form-group col-md-12">
                 <button id="btnSend" type="submit" class="btn btn-success btn-lg">Enviar</button>
-                <img src="~/Images/ajax-loader.gif" id="loading" style="display:none" />                
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-12">                
-                <span>* Dependendo da quantidade de e-mails essa pode ser uma operação bastante demorada</span>
             </div>
         </div>
     </form>
 </div>
 
-<div class="row" id="divResult">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Mensagem</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-    <button id="btnRetry" type="submit" class="btn btn-default btn-lg">Tentar novamente</button>
+<div class="row" id="divResult" style="display:none">
+    <div class="row control-group">
+        <div class="form-group col-md-12 floating-label-form-group controls">
+            <div id="divResultProcessing">
+                Enviando... <span id="processingItem">1</span>/@qtdEmails...
+                <img src="~/Images/ajax-loader.gif" />
+                <button id="btnStop" type="submit" class="btn btn-default btn-lg">Interromper</button>
+            </div>
+            <div id="divResultStop" class="bg-danger" style="display:none">
+                Processamento interrompido!
+            </div>
+            <div id="divResultSuccess" class="bg-success" style="display:none">
+                Processamento concluído!
+            </div>
+        </div>
+    </div>
+
+    <div class="row control-group">
+        <div class="form-group col-md-12 floating-label-form-group controls">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Mensagem</th>
+                    </tr>
+                </thead>
+                <tbody id="tableItems">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

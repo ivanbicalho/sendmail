@@ -21,8 +21,8 @@ namespace SendMail.Web.Controllers
         }
 
         [HttpPost]
-        [Route("mail/send")]
-        public ActionResult SendMail()
+        [Route("mail")]
+        public ActionResult Mail()
         {
             if (Request.Files.Count == 0)
             {
@@ -56,7 +56,7 @@ namespace SendMail.Web.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        [Route("mail/send/execute")]
+        [Route("mail/send")]
         public JsonResult SendMail(EmailData data)
         {
             return Json(new EmailSender().Send(data));
