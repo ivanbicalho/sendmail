@@ -16,6 +16,7 @@ namespace SendMail.Core.Business
     {
         public EmailResult Send(EmailData emailData)
         {
+            emailData.ToName = emailData.ToName ?? string.Empty;
             var result = new EmailResult() { Name = emailData.ToName, Email = emailData.ToEmail };
 
             try
